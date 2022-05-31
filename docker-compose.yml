@@ -1,0 +1,15 @@
+version: '2.3'
+
+services:
+  cli:
+    networks:
+      - default
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: &cli-image cli 
+    volumes:
+      - ./:/app:delegated
+      - ../lagoon-api-php-client:/lagoon-api-php-client:delegated
+    volumes_from: 
+      - container:amazeeio-ssh-agent 
